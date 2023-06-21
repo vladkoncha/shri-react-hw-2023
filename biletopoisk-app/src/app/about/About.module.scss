@@ -1,0 +1,17 @@
+@use '../../styles/base';
+
+.aboutContainer {
+  @include base.borders;
+  @include base.light-background;
+  @include base.app-padding;
+
+  h1 {
+    font-weight: 500;
+    color: base.$text-color-main;
+  }
+
+  p {
+    margin: 1rem auto;
+    color: base.$text-color-main;
+  }
+}
