@@ -1,0 +1,22 @@
+@use '../../styles/base';
+
+.headerContainer {
+  position: sticky;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  @include base.dark-background;
+  @include base.app-padding;
+
+  width: 100%;
+  height: 4rem;
+
+  h1 {
+    color: #fff;
+    transition: all 0.2s ease;
+
+    &:hover {
+      color: #ccc;
+    }
+  }
+}

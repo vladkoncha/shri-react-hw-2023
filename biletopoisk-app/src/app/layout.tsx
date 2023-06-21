@@ -1,8 +1,16 @@
-import "./globals.scss";
-import { Inter } from "next/font/google";
+import "@/styles/globals.scss";
+import { Roboto } from "next/font/google";
 import React from "react";
+import Header from "@/components/header/Header";
+import Footer from "@/components/footer/Footer";
 
-const inter = Inter({ subsets: ["latin"] });
+const roboto = Roboto({
+  weight: ["400", "500", "700"],
+  style: ["normal", "italic"],
+  subsets: ["cyrillic", "latin"],
+  display: "swap",
+  variable: "--font-roboto",
+});
 
 export const metadata = {
   title: "Билетопоиск",
@@ -16,7 +24,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ru">
-      <body className={inter.className}>{children}</body>
+      <body className={roboto.className}>
+        <div className={"wrapper"}>
+          <Header />
+          <div className={"App"}>{children}</div>
+          <Footer />
+        </div>
+      </body>
     </html>
   );
 }
