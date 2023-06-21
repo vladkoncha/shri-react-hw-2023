@@ -1,0 +1,18 @@
+@use '../../styles/base';
+
+.container {
+  display: flex;
+  flex-direction: column;
+
+  > * {
+    margin-bottom: 1rem;
+    @include base.borders;
+    @include base.light-background;
+  }
+
+  h1 {
+    @include base.app-padding;
+    font-weight: 600;
+    color: base.$text-color-main;
+  }
+}
