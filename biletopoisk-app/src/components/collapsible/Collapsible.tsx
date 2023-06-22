@@ -4,11 +4,11 @@ import React, { useState } from "react";
 import classes from "./Collapsible.module.scss";
 
 interface Props {
-  label: string;
+  label: React.ReactNode;
   children: React.ReactNode;
 }
 
-const Collapsible: React.FunctionComponent<Props> = ({ label, children }) => {
+const Collapsible = ({ label, children }: Props) => {
   const [open, setOpen] = useState(false);
   return (
     <div className={classes.container}>
@@ -18,7 +18,7 @@ const Collapsible: React.FunctionComponent<Props> = ({ label, children }) => {
           setOpen(!open);
         }}
       >
-        <h2>{label}</h2>
+        {label}
       </button>
       {open && <div>{children}</div>}
     </div>
