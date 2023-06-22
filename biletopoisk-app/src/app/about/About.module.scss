@@ -1,7 +1,7 @@
 @use '../../styles/base';
 
 .aboutContainer {
-  @include base.borders;
+  @include base.no-borders;
   @include base.light-background;
   @include base.app-padding;
 

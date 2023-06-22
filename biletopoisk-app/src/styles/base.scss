@@ -1,6 +1,12 @@
 $text-color-main: #1b1f23;
+$text-color-placeholder: #999FA6;
+
+$border-color-main: #E1E3E6;
+$border-color-active: #FF5500;
 
 $padding-size-main: 1.5rem;
+
+$border-radius-main: 8px;
 
 @mixin dark-background() {
   background-color: #333;
@@ -18,7 +24,17 @@ $padding-size-main: 1.5rem;
   background-color: #f5f5f5;
 }
 
-@mixin borders() {
-  border-radius: 8px;
+@mixin no-borders() {
+  border-radius: $border-radius-main;
   border: 0;
 }
+
+@mixin borders() {
+  border-radius: $border-radius-main;
+  border: solid 1px $border-color-main;
+
+  &:focus {
+    border-color: $border-color-active;
+  }
+}
+

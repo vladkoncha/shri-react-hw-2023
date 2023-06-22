@@ -2,7 +2,7 @@
 
 .container {
   @include base.light-background;
-  @include base.borders;
+  @include base.no-borders;
   overflow: hidden;
   display: flex;
   flex-direction: column;
