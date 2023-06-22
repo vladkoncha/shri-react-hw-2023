@@ -1,11 +1,20 @@
-import React from 'react';
+"use client";
+
+import React, { useState } from "react";
+import MovieFilter, { Filter } from "@/components/movie-filter/MovieFilter";
 
 const Page = () => {
-    return (
-        <div>
-            <h1>Home page</h1>
-        </div>
-    );
+  const [filter, setFilter] = useState<Filter>({
+    title: "",
+    genre: "",
+    theatre: "",
+  });
+
+  return (
+    <div>
+      <MovieFilter filter={filter} setFilter={setFilter} />
+    </div>
+  );
 };
 
 export default Page;
