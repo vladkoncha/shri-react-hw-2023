@@ -1,0 +1,15 @@
+@use '../../styles/base';
+
+.textInput {
+  color: base.$text-color-main;
+  @include base.borders;
+  @include base.light-background;
+  padding: 0.7rem 1rem;
+  outline: 0;
+
+  font-size: 0.9rem;
+
+  &::placeholder {
+    color: base.$text-color-placeholder;
+  }
+}
