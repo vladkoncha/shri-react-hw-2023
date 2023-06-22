@@ -1,7 +1,7 @@
 import React, { forwardRef, Ref, InputHTMLAttributes } from "react";
 import classes from "./TextInput.module.scss";
 
-const CustomTextInput = forwardRef(
+const TextInput = forwardRef(
   (
     props: InputHTMLAttributes<HTMLInputElement>,
     ref: Ref<HTMLInputElement>
@@ -14,4 +14,4 @@ const CustomTextInput = forwardRef(
   }
 );
 
-export default CustomTextInput;
+export default TextInput;

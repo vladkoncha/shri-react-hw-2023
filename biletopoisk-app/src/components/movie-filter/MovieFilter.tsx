@@ -27,6 +27,8 @@ const MovieFilter = () => {
       <div className={classes.inputContainer}>
         <label htmlFor="title">Название</label>
         <TextInput
+          name="title"
+          id="title"
           value={filter.title}
           placeholder="Введите название"
           onChange={(e) => setFilter({ ...filter, title: e.target.value })}
