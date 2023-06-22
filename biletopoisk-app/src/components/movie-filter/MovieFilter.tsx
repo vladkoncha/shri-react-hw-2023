@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import TextInput from "@/components/text-input/TextInput";
 import classes from "./MovieFilter.module.scss";
 
@@ -13,7 +15,12 @@ interface Props {
   setFilter: (filter: Filter) => void;
 }
 
-const MovieFilter = ({ filter, setFilter }: Props) => {
+const MovieFilter = () => {
+  const [filter, setFilter] = useState<Filter>({
+    title: "",
+    genre: "",
+    theatre: "",
+  });
   return (
     <div className={classes.filterContainer}>
       <p className={classes.filterName}> Фильтр поиска </p>

@@ -1,18 +1,17 @@
-"use client";
-
-import React, { useState } from "react";
-import MovieFilter, { Filter } from "@/components/movie-filter/MovieFilter";
+import React from "react";
+import MovieFilter from "@/components/movie-filter/MovieFilter";
+import classes from "./MainPage.module.scss";
+import Tickets from "@/components/tickets/Tickets";
 
 const Page = () => {
-  const [filter, setFilter] = useState<Filter>({
-    title: "",
-    genre: "",
-    theatre: "",
-  });
-
   return (
-    <div>
-      <MovieFilter filter={filter} setFilter={setFilter} />
+    <div className={classes.mainContainer}>
+      <div className={classes.filterContainer}>
+        <MovieFilter />
+      </div>
+      <div className={classes.ticketsContainer}>
+        <Tickets />
+      </div>
     </div>
   );
 };

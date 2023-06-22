@@ -11,7 +11,7 @@
   @include base.app-padding;
 
   width: 100%;
-  height: 4rem;
+  height: base.$header-height;
 
   h1 {
     color: #fff;

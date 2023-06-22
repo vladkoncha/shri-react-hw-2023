@@ -1,0 +1,27 @@
+@use '../styles/base';
+
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+
+@media screen and (min-width: 40rem) {
+  .mainContainer {
+    display: grid;
+    grid-template-columns: 1.15fr 3fr;
+    grid-gap: base.$padding-size-main;
+  }
+
+  .filterContainer {
+    position: sticky;
+    top: base.$header-height + base.$padding-size-main;
+    height: max-content;
+    //height: 100%;
+  }
+
+  .ticketsContainer {
+
+  }
+}
