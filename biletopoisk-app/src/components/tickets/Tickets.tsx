@@ -19,7 +19,7 @@ const Tickets = ({ inCart = false }: Props) => {
   }
 
   if (!data || error) {
-    throw error || new Error("Что-то пошло не так!");
+    throw error || new Error("No data");
   }
 
   return (
