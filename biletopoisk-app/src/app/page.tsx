@@ -3,7 +3,11 @@ import MovieFilter from "@/components/movie-filter/MovieFilter";
 import classes from "./MainPage.module.scss";
 import Tickets from "@/components/tickets/Tickets";
 
-const Page = () => {
+interface Props {
+  searchParams: { [key: string]: string | string[] | undefined };
+}
+
+const Page = ({ searchParams }: Props) => {
   return (
     <div className={classes.mainContainer}>
       <div className={classes.filterContainer}>

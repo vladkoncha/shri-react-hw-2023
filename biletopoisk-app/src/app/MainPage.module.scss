@@ -6,6 +6,22 @@
   gap: 1rem;
 }
 
+.errorContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+
+  h2 {
+    text-align: center;
+  }
+
+  button {
+    max-width: 16rem;
+  }
+}
+
 
 @media screen and (min-width: 40rem) {
   .mainContainer {
@@ -18,7 +34,6 @@
     position: sticky;
     top: base.$header-height + base.$padding-size-main;
     height: max-content;
-    //height: 100%;
   }
 
   .ticketsContainer {

@@ -1,19 +1,30 @@
+"use client";
+
 import React from "react";
 import classes from "./Tickets.module.scss";
-import TicketCard from "@/components/ticket-card/TicketCard";
 import { Movie } from "@/api-types/types";
+import { useGetMoviesQuery } from "@/store/services/movieApi";
+import TicketCard from "@/components/ticket-card/TicketCard";
+import Loader from "@/components/UI/loader/Loader";
 
-async function getMovies(): Promise<Movie[]> {
-  const res = await fetch(`http://127.0.0.1:3001/api/movies`);
-  return res.json();
+interface Props {
+  inCart?: boolean;
 }
 
-const Tickets = async () => {
-  const movies = await getMovies();
+const Tickets = ({ inCart = false }: Props) => {
+  const { data, isLoading, error } = useGetMoviesQuery(null);
+
+  if (isLoading) {
+    return <Loader />;
+  }
+
+  if (!data || error) {
+    throw error || new Error("Что-то пошло не так!");
+  }
 
   return (
     <div className={classes.ticketsContainer}>
-      {movies.map((movie) => (
+      {data.map((movie: Movie) => (
         <TicketCard movie={movie} key={movie.id} />
       ))}
     </div>

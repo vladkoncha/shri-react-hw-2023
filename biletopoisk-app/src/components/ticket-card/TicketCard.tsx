@@ -1,15 +1,16 @@
-import React from "react";
+import React, { Suspense } from "react";
 import classes from "./TicketCard.module.scss";
 import Image from "next/image";
 import Link from "next/link";
 import TicketClicker from "@/components/ticket-clicker/TicketClicker";
 import { genreMap, Movie } from "@/api-types/types";
+import TicketMovieInfo from "@/components/ticket-card/TicketMovieInfo";
 
 interface Props {
   movie: Movie;
 }
 
-const TicketCard = async ({ movie }: Props) => {
+const TicketCard = ({ movie }: Props) => {
   return (
     <div className={classes.cardContainer}>
       <div className={classes.imageContainer}>
@@ -23,16 +24,7 @@ const TicketCard = async ({ movie }: Props) => {
         />
       </div>
 
-      <div className={classes.descriptionContainer}>
-        <Link href="/">
-          <p className={classes.titleText}>{movie.title}</p>
-        </Link>
-        <p className={classes.genreText}>{genreMap[movie.genre]}</p>
-      </div>
-
-      <div className={classes.clickerContainer}>
-        <TicketClicker movieId={movie.id} />
-      </div>
+      <TicketMovieInfo movie={movie} />
     </div>
   );
 };

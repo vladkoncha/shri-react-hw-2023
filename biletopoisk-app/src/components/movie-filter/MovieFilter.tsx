@@ -9,12 +9,6 @@ export type Filter = {
   genre: string;
   theatre: string;
 };
-
-interface Props {
-  filter: Filter;
-  setFilter: (filter: Filter) => void;
-}
-
 const MovieFilter = () => {
   const [filter, setFilter] = useState<Filter>({
     title: "",
