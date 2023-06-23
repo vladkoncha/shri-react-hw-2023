@@ -1,6 +1,6 @@
 import React from "react";
 import classes from "./Faq.module.scss";
-import Collapsible from "@/components/collapsible/Collapsible";
+import Collapsible from "@/components/UI/collapsible/Collapsible";
 
 const Label = (text: string) => {
   return <h2>{text}</h2>;

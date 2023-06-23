@@ -1,0 +1,43 @@
+@use '../../../styles/base';
+
+@mixin buttonSettings() {
+  line-height: 2;
+  padding: 0.4rem 0.9rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  @include base.no-borders;
+  transition: 0.1s ease-in;
+
+  &[disabled] {
+    cursor: not-allowed;
+  }
+}
+
+.primary {
+  @include buttonSettings;
+  background-color: base.$border-color-active;
+  color: #fff;
+
+  &:not(:disabled):hover {
+    filter: brightness(120%);
+  }
+
+  &[disabled] {
+    cursor: not-allowed;
+  }
+}
+
+.secondary {
+  @include buttonSettings;
+
+  //background-color: transparent;
+  @include base.light-background;
+  border: solid 1px base.$border-color-active;
+  color: base.$border-color-active;
+
+  &:not(:disabled):hover {
+    filter: contrast(90%);
+  }
+}

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import TextInput from "@/components/text-input/TextInput";
+import TextInput from "@/components/UI/text-input/TextInput";
 import classes from "./MovieFilter.module.scss";
 
 export type Filter = {
