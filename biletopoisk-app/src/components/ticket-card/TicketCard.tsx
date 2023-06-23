@@ -3,7 +3,7 @@ import classes from "./TicketCard.module.scss";
 import Image from "next/image";
 import Link from "next/link";
 import TicketClicker from "@/components/ticket-clicker/TicketClicker";
-import {genreMap, Movie} from "@/api-types/types";
+import { genreMap, Movie } from "@/api-types/types";
 
 interface Props {
   movie: Movie;
@@ -31,7 +31,7 @@ const TicketCard = async ({ movie }: Props) => {
       </div>
 
       <div className={classes.clickerContainer}>
-        <TicketClicker />
+        <TicketClicker movieId={movie.id} />
       </div>
     </div>
   );

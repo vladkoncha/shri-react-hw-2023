@@ -22,3 +22,29 @@
     }
   }
 }
+
+.basketContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+
+  background: 0;
+  border: 0;
+
+  &:hover {
+    filter: brightness(80%);
+    cursor: pointer;
+  }
+}
+
+.ticketsAmountText {
+  background-color: base.$border-color-active;
+  @include base.no-borders;
+  padding: 0.5rem;
+  width: 2rem;
+  text-align: center;
+
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.9rem;
+}

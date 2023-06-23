@@ -1,36 +1,47 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import classes from "./TicketClicker.module.scss";
 import classNames from "classnames";
+import { cartActions, MAX_TICKETS } from "@/store/features/cart";
+import {
+  selectTicketAmount,
+  useAppDispatch,
+  useAppSelector,
+} from "@/store/features/cart/selector";
 
-const MAX_TICKETS = 30;
+interface Props {
+  movieId: string;
+}
 
-const TicketClicker = () => {
-  const [amount, setAmount] = useState(0);
+const TicketClicker = ({ movieId }: Props) => {
+  const ticketsAmount = useAppSelector((state) =>
+    selectTicketAmount(state, movieId)
+  );
+  const dispatch = useAppDispatch();
 
   function decrement() {
-    if (amount > 0) {
-      setAmount(amount - 1);
+    if (ticketsAmount > 0) {
+      dispatch(cartActions.decrement(movieId));
     }
   }
 
   function increment() {
-    if (amount < MAX_TICKETS) {
-      setAmount(amount + 1);
+    if (ticketsAmount < MAX_TICKETS) {
+      dispatch(cartActions.increment(movieId));
     }
   }
 
   return (
     <div className={classes.clickerContainer}>
       <button
-        disabled={amount < 1}
+        disabled={ticketsAmount < 1}
         className={classNames(classes.clickerButton, classes.minus)}
         onClick={decrement}
       />
-      <p className={classes.amountText}>{amount}</p>
+      <p className={classes.amountText}>{ticketsAmount}</p>
       <button
-        disabled={amount >= MAX_TICKETS}
+        disabled={ticketsAmount >= MAX_TICKETS}
         className={classNames(classes.clickerButton, classes.plus)}
         onClick={increment}
       />
