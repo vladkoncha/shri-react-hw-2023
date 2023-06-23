@@ -3,8 +3,7 @@ import classes from "./TicketCard.module.scss";
 import Image from "next/image";
 import Link from "next/link";
 import TicketClicker from "@/components/ticket-clicker/TicketClicker";
-import { Movie } from "@/api-types/types";
-import { genreMap } from "@/utils/genreMap";
+import {genreMap, Movie} from "@/api-types/types";
 
 interface Props {
   movie: Movie;
