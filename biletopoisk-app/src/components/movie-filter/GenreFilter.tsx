@@ -4,11 +4,12 @@ import { genreMap } from "@/api-types/types";
 import DropDownList from "@/components/UI/drop-down-list/DropDownList";
 
 interface Props {
+  genre?: string;
   onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-const GenreFilter = ({ onClick }: Props) => {
-  const [buttonCaption, setButtonCaption] = useState("Выберите жанр");
+const GenreFilter = ({ onClick, genre }: Props) => {
+  const [buttonCaption, setButtonCaption] = useState(genre || "Выберите жанр");
   const genreFilters = { all: "Не выбран", ...genreMap };
 
   let listItems: React.ReactNode[] = [];
@@ -31,7 +32,11 @@ const GenreFilter = ({ onClick }: Props) => {
 
   return (
     <>
-      <DropDownList listItems={listItems} buttonCaption={buttonCaption} />
+      <DropDownList
+        isItemSelectedInit={Boolean(genre)}
+        listItems={listItems}
+        buttonCaption={buttonCaption}
+      />
     </>
   );
 };

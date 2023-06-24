@@ -6,6 +6,7 @@ import TextInput from "@/components/UI/text-input/TextInput";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import GenreFilter from "@/components/movie-filter/GenreFilter";
 import CinemaFilter from "@/components/movie-filter/CinemaFilter";
+import { genreMap } from "@/api-types/types";
 
 export type Filter = {
   title: string;
@@ -85,6 +86,11 @@ const MovieFilter = () => {
       <div className={classes.inputContainer}>
         <label>Жанр</label>
         <GenreFilter
+          genre={
+            filter.genre in genreMap
+              ? genreMap[filter.genre as keyof typeof genreMap]
+              : ""
+          }
           onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
             setFilter({ ...filter, genre: e.currentTarget.value });
 
@@ -104,6 +110,7 @@ const MovieFilter = () => {
       <div className={classes.inputContainer}>
         <label>Кинотеатр</label>
         <CinemaFilter
+          cinemaId={filter.cinemaId}
           onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
             setFilter({ ...filter, cinemaId: e.currentTarget.value });
 

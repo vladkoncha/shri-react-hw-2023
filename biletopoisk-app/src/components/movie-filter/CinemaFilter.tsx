@@ -1,17 +1,25 @@
 import classes from "./DropDownFilter.module.scss";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Cinema } from "@/api-types/types";
 import DropDownList from "@/components/UI/drop-down-list/DropDownList";
 import { useGetCinemasQuery } from "@/store/services/movieApi";
 import Loader from "@/components/UI/loader/Loader";
 
 interface Props {
+  cinemaId?: string;
   onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-const CinemaFilter = ({ onClick }: Props) => {
+const CinemaFilter = ({ onClick, cinemaId }: Props) => {
   const { data, isLoading, error } = useGetCinemasQuery(null);
   const [buttonCaption, setButtonCaption] = useState("Выберите кинотеатр");
+  const cinemaFilters: { [key: string]: string } = { all: "Не выбран" };
+
+  useEffect(() => {
+    if (cinemaId) {
+      setButtonCaption(cinemaFilters[cinemaId] || "Выберите кинотеатр");
+    }
+  }, [cinemaFilters]);
 
   if (isLoading) {
     return <Loader />;
@@ -21,7 +29,6 @@ const CinemaFilter = ({ onClick }: Props) => {
     return <p>Кинотеатры не найдены</p>;
   }
 
-  const cinemaFilters: { [key: string]: string } = { all: "Не выбран" };
   data.forEach((cinema: Cinema) => {
     cinemaFilters[cinema.id] = cinema.name;
   });
@@ -46,7 +53,11 @@ const CinemaFilter = ({ onClick }: Props) => {
 
   return (
     <>
-      <DropDownList listItems={listItems} buttonCaption={buttonCaption} />
+      <DropDownList
+        isItemSelectedInit={Boolean(cinemaId)}
+        listItems={listItems}
+        buttonCaption={buttonCaption}
+      />
     </>
   );
 };

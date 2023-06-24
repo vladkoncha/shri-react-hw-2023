@@ -19,7 +19,9 @@ const DropDownList = ({
   const [isOpen, setIsOpen] = useState(false);
   const listRef = useRef<HTMLUListElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
-  const [isItemSelected, setIsItemSelected] = useState(isItemSelectedInit);
+  const [isItemSelected, setIsItemSelected] = useState(
+    isItemSelectedInit || false
+  );
   const [width, setWidth] = useState<number>(0);
   const [position, setPosition] = useState<{
     x: number;

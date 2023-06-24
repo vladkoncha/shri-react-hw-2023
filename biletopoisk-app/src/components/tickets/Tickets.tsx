@@ -44,8 +44,8 @@ const Tickets = ({ inCart = false }: Props) => {
     );
   }
   if (filter.genre) {
-    movies = movies.filter((movie: Movie) =>
-      movie.genre.toLowerCase().includes(filter.genre.toLowerCase())
+    movies = movies.filter(
+      (movie: Movie) => movie.genre.toLowerCase() === filter.genre.toLowerCase()
     );
   }
 
