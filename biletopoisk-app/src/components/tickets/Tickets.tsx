@@ -1,6 +1,5 @@
 "use client";
 
-import classes from "./Tickets.module.scss";
 import TicketCard from "@/components/ticket-card/TicketCard";
 import Loader from "@/components/UI/loader/Loader";
 import React from "react";
@@ -50,7 +49,7 @@ const Tickets = ({ inCart = false }: Props) => {
   }
 
   return (
-    <div className={classes.ticketsContainer}>
+    <div className={"ticketsContainer"}>
       {movies.map((movie: Movie) => (
         <TicketCard movie={movie} key={movie.id} />
       ))}

@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import classes from "./TicketClicker.module.scss";
 import classNames from "classnames";
 import { cartActions, MAX_TICKETS } from "@/store/features/cart";
 import {
@@ -33,16 +32,16 @@ const TicketClicker = ({ movieId }: Props) => {
   }
 
   return (
-    <div className={classes.clickerContainer}>
+    <div className={"clickerContainer"}>
       <button
         disabled={ticketsAmount < 1}
-        className={classNames(classes.clickerButton, classes.minus)}
+        className={classNames("clickerButton", "minus")}
         onClick={decrement}
       />
-      <p className={classes.amountText}>{ticketsAmount}</p>
+      <p className={"amountText"}>{ticketsAmount}</p>
       <button
         disabled={ticketsAmount >= MAX_TICKETS}
-        className={classNames(classes.clickerButton, classes.plus)}
+        className={classNames("clickerButton", "plus")}
         onClick={increment}
       />
     </div>

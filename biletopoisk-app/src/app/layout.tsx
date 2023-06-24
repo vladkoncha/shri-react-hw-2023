@@ -1,4 +1,6 @@
 import "@/styles/globals.scss";
+import "../styles/ticketStyles.scss";
+import "../styles/loaderStyles.scss";
 import { Roboto } from "next/font/google";
 import React from "react";
 import Header from "@/components/header/Header";

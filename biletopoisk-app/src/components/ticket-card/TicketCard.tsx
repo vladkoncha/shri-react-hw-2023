@@ -1,9 +1,8 @@
-import React, { Suspense } from "react";
-import classes from "./TicketCard.module.scss";
+"use client";
+
+import React from "react";
 import Image from "next/image";
-import Link from "next/link";
-import TicketClicker from "@/components/ticket-clicker/TicketClicker";
-import { genreMap, Movie } from "@/api-types/types";
+import { Movie } from "@/api-types/types";
 import TicketMovieInfo from "@/components/ticket-card/TicketMovieInfo";
 
 interface Props {
@@ -12,8 +11,8 @@ interface Props {
 
 const TicketCard = ({ movie }: Props) => {
   return (
-    <div className={classes.cardContainer}>
-      <div className={classes.imageContainer}>
+    <div className={"cardContainer"}>
+      <div className={"imageContainer"}>
         <Image
           alt={`Постер для ${movie.title}`}
           src={movie.posterUrl}

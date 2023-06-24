@@ -1,0 +1,113 @@
+@use 'base';
+
+.ticketsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.clickerContainer {
+  display: flex;
+  align-items: center;
+}
+
+.amountText {
+  min-width: 2rem;
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+.clickerButton {
+  color: #fff;
+  background-color: base.$border-color-active;
+  padding: 0;
+  font-size: 1rem;
+
+  width: 1.25rem;
+  height: 1.25rem;
+
+  border: 0;
+  border-radius: 4px;
+
+  &:disabled {
+    background-color: base.$border-color-disabled;
+    cursor: not-allowed;
+  }
+
+  &:not([disabled]):hover {
+    filter: brightness(120%);
+  }
+}
+
+@mixin button-background() {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 60%;
+}
+
+.plus {
+  background-image: url('../../public/icons/plus.svg');
+  @include button-background;
+}
+
+.minus {
+  background-image: url('../../public/icons/minus.svg');
+  @include button-background;
+}
+
+.cardContainer {
+  @include base.no-borders;
+  @include base.light-background;
+  @include base.app-padding;
+
+  height: 8rem;
+
+  display: grid;
+  align-content: center;
+  grid-gap: 0.5rem;
+  grid-template-columns: auto auto 1fr;
+}
+
+.descriptionContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.clickerContainer {
+  margin-left: auto;
+}
+
+.imageContainer {
+  @include base.no-borders;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 4rem;
+  margin-right: 1rem;
+
+  img {
+    width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+  }
+}
+
+.titleText {
+  font-size: 1.25rem;
+  color: base.$text-color-main;
+  font-weight: 600;
+
+  &:hover {
+    filter: contrast(60%);
+  }
+}
+
+.genreText {
+  font-size: 1rem;
+  color: base.$text-color-main;
+  font-style: italic;
+}
