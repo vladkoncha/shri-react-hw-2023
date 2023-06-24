@@ -1,5 +1,5 @@
 import classes from "./DropDownFilter.module.scss";
-import React from "react";
+import React, { useState } from "react";
 import { genreMap } from "@/api-types/types";
 import DropDownList from "@/components/UI/drop-down-list/DropDownList";
 
@@ -8,13 +8,21 @@ interface Props {
 }
 
 const GenreFilter = ({ onClick }: Props) => {
+  const [buttonCaption, setButtonCaption] = useState("Выберите жанр");
   const genreFilters = { all: "Не выбран", ...genreMap };
 
   let listItems: React.ReactNode[] = [];
   for (const [key, value] of Object.entries(genreFilters)) {
     listItems.push(
       <>
-        <button className={classes.button} value={key} onClick={onClick}>
+        <button
+          className={classes.button}
+          value={key}
+          onClick={(e) => {
+            setButtonCaption(value);
+            onClick(e);
+          }}
+        >
           {value}
         </button>
       </>
@@ -23,7 +31,7 @@ const GenreFilter = ({ onClick }: Props) => {
 
   return (
     <>
-      <DropDownList listItems={listItems} buttonCaption={"Выберите жанр"} />
+      <DropDownList listItems={listItems} buttonCaption={buttonCaption} />
     </>
   );
 };

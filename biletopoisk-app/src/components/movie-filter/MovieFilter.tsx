@@ -1,10 +1,11 @@
 "use client";
 
+import classes from "./MovieFilter.module.scss";
 import React, { useCallback, useState } from "react";
 import TextInput from "@/components/UI/text-input/TextInput";
-import classes from "./MovieFilter.module.scss";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import GenreFilter from "@/components/movie-filter/GenreFilter";
+import CinemaFilter from "@/components/movie-filter/CinemaFilter";
 
 export type Filter = {
   title: string;
@@ -48,6 +49,25 @@ const MovieFilter = () => {
     genre: searchParams.get("genre") || "",
   });
 
+  const [debounceTimer, setDebounceTimer] = useState<NodeJS.Timeout>();
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    clearTimeout(debounceTimer);
+
+    setFilter({ ...filter, title: e.target.value });
+
+    setDebounceTimer(
+      setTimeout(() => {
+        if (e.target.value === "") {
+          router.replace(pathname + "?" + clearQueryString("title"));
+        } else {
+          router.replace(
+            pathname + "?" + createQueryString("title", e.target.value)
+          );
+        }
+      }, 500)
+    );
+  };
+
   return (
     <div className={classes.filterContainer}>
       <p className={classes.filterName}> Фильтр поиска </p>
@@ -58,18 +78,7 @@ const MovieFilter = () => {
           id="title"
           value={filter.title}
           placeholder="Введите название"
-          onChange={(e) => {
-            setFilter({ ...filter, title: e.target.value });
-
-            // TODO: debounce роутинга
-            if (e.target.value === "") {
-              router.replace(pathname + "?" + clearQueryString("title"));
-            } else {
-              router.replace(
-                pathname + "?" + createQueryString("title", e.target.value)
-              );
-            }
-          }}
+          onChange={handleInputChange}
         />
       </div>
 
@@ -92,7 +101,24 @@ const MovieFilter = () => {
         />
       </div>
 
-      <p>{filter.cinemaId}</p>
+      <div className={classes.inputContainer}>
+        <label>Кинотеатр</label>
+        <CinemaFilter
+          onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+            setFilter({ ...filter, cinemaId: e.currentTarget.value });
+
+            if (e.currentTarget.value === "all") {
+              router.replace(pathname + "?" + clearQueryString("cinemaId"));
+            } else {
+              router.replace(
+                pathname +
+                  "?" +
+                  createQueryString("cinemaId", e.currentTarget.value)
+              );
+            }
+          }}
+        />
+      </div>
     </div>
   );
 };

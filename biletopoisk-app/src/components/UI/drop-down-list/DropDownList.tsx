@@ -6,14 +6,20 @@ import classNames from "classnames";
 import { createPortal } from "react-dom";
 
 interface LinksListProps {
+  isItemSelectedInit?: boolean;
   buttonCaption: string;
   listItems: ReactNode[];
 }
 
-const DropDownList = ({ buttonCaption, listItems }: LinksListProps) => {
+const DropDownList = ({
+  isItemSelectedInit,
+  buttonCaption,
+  listItems,
+}: LinksListProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const listRef = useRef<HTMLUListElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
+  const [isItemSelected, setIsItemSelected] = useState(isItemSelectedInit);
   const [width, setWidth] = useState<number>(0);
   const [position, setPosition] = useState<{
     x: number;
@@ -54,6 +60,9 @@ const DropDownList = ({ buttonCaption, listItems }: LinksListProps) => {
   if (isOpen) {
     buttonClasses.push(classes.openButton);
   }
+  if (isItemSelected) {
+    buttonClasses.push(classes.activeButton);
+  }
 
   return (
     <div>
@@ -78,7 +87,10 @@ const DropDownList = ({ buttonCaption, listItems }: LinksListProps) => {
               {listItems.map((item, index) => (
                 <li
                   className={classes.listItem}
-                  onClick={() => setIsOpen(!isOpen)}
+                  onClick={() => {
+                    setIsItemSelected(true);
+                    setIsOpen(!isOpen);
+                  }}
                   key={index}
                 >
                   {item}

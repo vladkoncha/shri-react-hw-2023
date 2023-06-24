@@ -41,11 +41,11 @@
   }
 }
 
-.listContainer {
-  //position: fixed;
-  //top: 50%;
-  //left: 0;
+.activeButton {
+  color: base.$text-color-main;
+}
 
+.listContainer {
   display: flex;
   flex-direction: column;
   overflow: hidden;

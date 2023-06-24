@@ -18,3 +18,9 @@ export type Movie = {
   director: string;
   reviewIds: string[];
 };
+
+export type Cinema = {
+  id: string;
+  name: string;
+  movieIds: string[];
+};
