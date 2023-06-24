@@ -1,6 +1,6 @@
-import "@/styles/globals.scss";
+import "../../styles/globals.scss";
 import React from "react";
-import classes from "@/app/MainPage.module.scss";
+import classes from "./MainPage.module.scss";
 import MovieFilter from "@/components/movie-filter/MovieFilter";
 
 export default function FilterLayout({

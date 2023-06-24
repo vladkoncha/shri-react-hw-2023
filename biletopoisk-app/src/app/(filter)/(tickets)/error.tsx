@@ -1,7 +1,7 @@
 "use client";
 
 import CustomButton, { ButtonClass } from "@/components/UI/button/CustomButton";
-import classes from "@/app/MainPage.module.scss";
+import classes from "../MainPage.module.scss";
 
 interface Props {
   error: Error;
