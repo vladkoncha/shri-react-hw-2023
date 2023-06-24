@@ -1,35 +1,33 @@
 "use client";
 
-import React from "react";
 import classes from "./Tickets.module.scss";
+import TicketCard from "@/components/ticket-card/TicketCard";
+import Loader from "@/components/UI/loader/Loader";
+import React from "react";
 import { Movie } from "@/api-types/types";
 import {
   useGetMovieByCinemaIdQuery,
   useGetMoviesQuery,
 } from "@/store/services/movieApi";
-import TicketCard from "@/components/ticket-card/TicketCard";
-import Loader from "@/components/UI/loader/Loader";
 import { Filter } from "@/components/movie-filter/MovieFilter";
+import { useSearchParams } from "next/navigation";
 
 interface Props {
   inCart?: boolean;
-  searchParams?: SearchParams;
 }
 
-export interface SearchParams {
-  title?: string;
-  genre?: string;
-  cinemaId?: string;
-}
+const Tickets = ({ inCart = false }: Props) => {
+  const searchParams = useSearchParams()!;
 
-const Tickets = ({ searchParams, inCart = false }: Props) => {
-  const { data, isLoading, error } = searchParams?.cinemaId
-    ? useGetMovieByCinemaIdQuery(searchParams.cinemaId)
+  const { data, isLoading, error } = searchParams.get("cinemaId")
+    ? useGetMovieByCinemaIdQuery(searchParams.get("cinemaId"))
     : useGetMoviesQuery(null);
 
-  const filter = searchParams as Filter;
-
-  let movies: Movie[];
+  const filter: Filter = {
+    title: searchParams.get("title") || "",
+    cinemaId: searchParams.get("cinemaId") || "",
+    genre: searchParams.get("genre") || "",
+  };
 
   if (isLoading) {
     return <Loader />;
@@ -39,12 +37,16 @@ const Tickets = ({ searchParams, inCart = false }: Props) => {
     throw error || new Error("No data");
   }
 
+  let movies: Movie[] = [...data];
   if (filter.title) {
-    movies = data.filter((movie: Movie) =>
+    movies = movies.filter((movie: Movie) =>
       movie.title.toLowerCase().includes(filter.title.toLowerCase())
     );
-  } else {
-    movies = [...data];
+  }
+  if (filter.genre) {
+    movies = movies.filter((movie: Movie) =>
+      movie.genre.toLowerCase().includes(filter.genre.toLowerCase())
+    );
   }
 
   return (

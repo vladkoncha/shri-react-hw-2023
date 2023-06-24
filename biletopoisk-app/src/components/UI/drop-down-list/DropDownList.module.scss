@@ -1,0 +1,59 @@
+@use '../../../styles/base';
+
+.button {
+  width: 100%;
+  height: 100%;
+  text-align: left;
+  position: relative;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  color: base.$text-color-placeholder;
+  @include base.borders;
+  @include base.light-background;
+  padding: 0.4rem 1rem;
+  outline: 0;
+
+  line-height: 2;
+
+  font-size: 0.9rem;
+
+  justify-content: space-between;
+
+  &::after {
+    content: "";
+    position: relative;
+    display: inline-block;
+    width: 1.5rem;
+    height: 1.5rem;
+    background-image: url('../../../../public/icons/chevron-down-gray.svg');
+    background-size: cover;
+    transition: all 0.25s ease-in-out;
+  }
+}
+
+
+.openButton {
+  &::after {
+    transform: rotate(-180deg);
+  }
+}
+
+.listContainer {
+  //position: fixed;
+  //top: 50%;
+  //left: 0;
+
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  @include base.no-borders;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.listItem {
+  list-style-type: none;
+}
