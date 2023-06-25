@@ -7,7 +7,7 @@ const TicketMovieInfo = ({ movie }: { movie: Movie }) => {
   return (
     <>
       <div className={"descriptionContainer"}>
-        <Link href="/">
+        <Link href={`movie/${movie.id}`}>
           <p className={"titleText"}>{movie.title}</p>
         </Link>
         <p className={"genreText"}>{genreMap[movie.genre]}</p>

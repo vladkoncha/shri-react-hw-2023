@@ -24,3 +24,10 @@ export type Cinema = {
   name: string;
   movieIds: string[];
 };
+
+export type Review = {
+  id: string;
+  name: string;
+  text: string;
+  rating: Rating;
+};

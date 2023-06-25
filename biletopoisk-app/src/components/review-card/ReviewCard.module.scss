@@ -1,0 +1,41 @@
+@use '../../styles/base';
+
+
+.reviewContainer {
+  @include base.app-padding;
+  @include base.light-background;
+  @include base.no-borders;
+
+  display: flex;
+}
+
+.reviewAvatarImageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #D9D9D9;
+  @include base.no-borders;
+  width: 7rem;
+  height: 7rem;
+  margin-right: 2rem;
+}
+
+.nameRatingContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.reviewTextContainer {
+  width: 100%;
+}
+
+.reviewNameRatingText {
+  font-weight: 500;
+}
+
+.reviewTitleText {
+  font-size: 1.25rem;
+}
