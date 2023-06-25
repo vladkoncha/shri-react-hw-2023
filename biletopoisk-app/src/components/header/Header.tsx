@@ -17,7 +17,7 @@ const Header = () => {
       <h1>
         <Link href="/">Билетопоиск</Link>
       </h1>
-      <Link className={classes.basketContainer} href="/">
+      <Link className={classes.basketContainer} href="/cart">
         {ticketsAmount > 0 && (
           <p className={classes.ticketsAmountText}>{ticketsAmount}</p>
         )}

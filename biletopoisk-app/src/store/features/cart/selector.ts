@@ -1,6 +1,7 @@
 import { CartState } from "@/store/features/cart/index";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
+import { createSelector } from "reselect";
 
 export interface State {
   cart: CartState;
@@ -12,9 +13,9 @@ export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 
 const selectCartModule = (state: State) => state.cart;
 
-export const selectInCart = (state: State) => {
-  return Object.keys(selectCartModule(state));
-};
+export const selectInCart = createSelector([selectCartModule], (cartModule) => {
+  return Object.keys(cartModule);
+});
 
 export const selectTicketAmount = (state: State, id: string) =>
   selectCartModule(state)[id] || 0;

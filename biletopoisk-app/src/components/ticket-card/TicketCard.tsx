@@ -6,10 +6,11 @@ import { Movie } from "@/api-types/types";
 import TicketMovieInfo from "@/components/ticket-card/TicketMovieInfo";
 
 interface Props {
+  addRemovers?: boolean;
   movie: Movie;
 }
 
-const TicketCard = ({ movie }: Props) => {
+const TicketCard = ({ movie, addRemovers }: Props) => {
   return (
     <div className={"cardContainer"}>
       <div className={"imageContainer"}>
@@ -23,7 +24,7 @@ const TicketCard = ({ movie }: Props) => {
         />
       </div>
 
-      <TicketMovieInfo movie={movie} />
+      <TicketMovieInfo movie={movie} addRemover={addRemovers} />
     </div>
   );
 };

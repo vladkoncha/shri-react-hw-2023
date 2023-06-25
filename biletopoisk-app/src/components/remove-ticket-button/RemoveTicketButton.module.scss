@@ -1,0 +1,21 @@
+@use '../../styles/base';
+
+.removeTicketButton {
+  @include base.no-borders;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 60%;
+  background-image: url('../../../public/icons/cross.svg');
+  transition: all 0.2s ease-in-out;
+
+  width: 1.5rem;
+  height: 1.5rem;
+
+  display: flex;
+  align-items: center;
+
+  &:hover {
+    background-color: base.$text-color-placeholder;
+  }
+}

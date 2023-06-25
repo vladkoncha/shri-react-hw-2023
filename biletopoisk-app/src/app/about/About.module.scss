@@ -5,6 +5,8 @@
   @include base.light-background;
   @include base.app-padding;
 
+  height: max-content;
+
   h1 {
     font-weight: 500;
     color: base.$text-color-main;

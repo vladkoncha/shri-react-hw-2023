@@ -74,8 +74,10 @@
   flex-direction: column;
 }
 
-.clickerContainer {
+.ticketCardClickerContainer {
   margin-left: auto;
+  //display: flex;
+  gap: 1.5rem;
 }
 
 .imageContainer {

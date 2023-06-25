@@ -4,8 +4,8 @@ import classes from "./Footer.module.scss";
 const Footer = () => {
   return (
     <footer className={classes.footerContainer}>
-      <Link href="faq">Вопросы-ответы</Link>
-      <Link href="about">О нас</Link>
+      <Link href="/faq">Вопросы-ответы</Link>
+      <Link href="/about">О нас</Link>
     </footer>
   );
 };

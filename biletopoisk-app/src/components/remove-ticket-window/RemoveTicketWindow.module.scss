@@ -1,0 +1,44 @@
+@use '../../styles/base';
+
+.windowContainer {
+  @include base.no-borders;
+  @include base.app-padding;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.titleCloseButtonContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.answerButtonsContainer {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+.windowTitleText {
+  font-size: larger;
+  font-weight: 500;
+}
+
+.closeButton {
+  @include base.no-borders;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 40%;
+  background-image: url('../../../public/icons/cross.svg');
+  transition: all 0.2s ease-in-out;
+
+  width: 2rem;
+  height: 2rem;
+
+  &:hover {
+    background-color: base.$text-color-placeholder;
+  }
+}
