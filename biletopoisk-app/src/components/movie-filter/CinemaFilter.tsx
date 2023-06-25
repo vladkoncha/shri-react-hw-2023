@@ -13,13 +13,17 @@ interface Props {
 const CinemaFilter = ({ onClick, cinemaId }: Props) => {
   const { data, isLoading, error } = useGetCinemasQuery(null);
   const [buttonCaption, setButtonCaption] = useState("Выберите кинотеатр");
+  const [isItemSelected, setIsItemSelected] = useState(Boolean(cinemaId));
   const cinemaFilters: { [key: string]: string } = { all: "Не выбран" };
 
   useEffect(() => {
     if (cinemaId) {
-      setButtonCaption(cinemaFilters[cinemaId] || "Выберите кинотеатр");
+      setButtonCaption(cinemaFilters?.[cinemaId] || "Выберите кинотеатр");
+    } else {
+      setButtonCaption("Выберите кинотеатр");
     }
-  }, [cinemaFilters]);
+    setIsItemSelected(Boolean(cinemaId));
+  }, [cinemaId, cinemaFilters]);
 
   if (isLoading) {
     return <Loader />;
@@ -54,7 +58,7 @@ const CinemaFilter = ({ onClick, cinemaId }: Props) => {
   return (
     <>
       <DropDownList
-        isItemSelectedInit={Boolean(cinemaId)}
+        isItemSelected={isItemSelected}
         listItems={listItems}
         buttonCaption={buttonCaption}
       />

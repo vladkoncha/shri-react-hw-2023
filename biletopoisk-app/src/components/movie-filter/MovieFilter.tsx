@@ -1,7 +1,7 @@
 "use client";
 
 import classes from "./MovieFilter.module.scss";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import TextInput from "@/components/UI/text-input/TextInput";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import GenreFilter from "@/components/movie-filter/GenreFilter";
@@ -50,6 +50,14 @@ const MovieFilter = () => {
     genre: searchParams.get("genre") || "",
   });
 
+  useEffect(() => {
+    setFilter({
+      title: searchParams.get("title") || "",
+      cinemaId: searchParams.get("cinemaId") || "",
+      genre: searchParams.get("genre") || "",
+    });
+  }, [searchParams]);
+
   const createRoute = (filterName: keyof Filter, value: string): void => {
     if (["all", ""].includes(value)) {
       router.replace(pathname + "?" + clearQueryString(filterName));
@@ -61,8 +69,6 @@ const MovieFilter = () => {
   const [debounceTimer, setDebounceTimer] = useState<NodeJS.Timeout>();
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     clearTimeout(debounceTimer);
-
-    setFilter({ ...filter, title: e.target.value });
 
     setDebounceTimer(
       setTimeout(() => {
@@ -94,7 +100,6 @@ const MovieFilter = () => {
               : ""
           }
           onClick={(e) => {
-            setFilter({ ...filter, genre: e.currentTarget.value });
             createRoute("genre", e.currentTarget.value);
           }}
         />
@@ -105,7 +110,6 @@ const MovieFilter = () => {
         <CinemaFilter
           cinemaId={filter.cinemaId}
           onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
-            setFilter({ ...filter, cinemaId: e.currentTarget.value });
             createRoute("cinemaId", e.currentTarget.value);
           }}
         />

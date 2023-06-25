@@ -1,5 +1,5 @@
 import classes from "./DropDownFilter.module.scss";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { genreMap } from "@/api-types/types";
 import DropDownList from "@/components/UI/drop-down-list/DropDownList";
 
@@ -10,7 +10,13 @@ interface Props {
 
 const GenreFilter = ({ onClick, genre }: Props) => {
   const [buttonCaption, setButtonCaption] = useState(genre || "Выберите жанр");
+  const [isItemSelected, setIsItemSelected] = useState(Boolean(genre));
   const genreFilters = { all: "Не выбран", ...genreMap };
+
+  useEffect(() => {
+    setButtonCaption(genre || "Выберите жанр");
+    setIsItemSelected(Boolean(genre));
+  }, [genre]);
 
   let listItems: React.ReactNode[] = [];
   for (const [key, value] of Object.entries(genreFilters)) {
@@ -33,7 +39,7 @@ const GenreFilter = ({ onClick, genre }: Props) => {
   return (
     <>
       <DropDownList
-        isItemSelectedInit={Boolean(genre)}
+        isItemSelected={isItemSelected}
         listItems={listItems}
         buttonCaption={buttonCaption}
       />
