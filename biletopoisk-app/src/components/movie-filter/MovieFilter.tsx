@@ -50,6 +50,14 @@ const MovieFilter = () => {
     genre: searchParams.get("genre") || "",
   });
 
+  const createRoute = (name: string, filterName: keyof Filter): void => {
+    if (["all", ""].includes(name)) {
+      router.replace(pathname + "?" + clearQueryString(filterName));
+    } else {
+      router.replace(pathname + "?" + createQueryString(filterName, name));
+    }
+  };
+
   const [debounceTimer, setDebounceTimer] = useState<NodeJS.Timeout>();
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     clearTimeout(debounceTimer);
@@ -58,13 +66,7 @@ const MovieFilter = () => {
 
     setDebounceTimer(
       setTimeout(() => {
-        if (e.target.value === "") {
-          router.replace(pathname + "?" + clearQueryString("title"));
-        } else {
-          router.replace(
-            pathname + "?" + createQueryString("title", e.target.value)
-          );
-        }
+        createRoute(e.target.value, "title");
       }, 500)
     );
   };
@@ -91,18 +93,9 @@ const MovieFilter = () => {
               ? genreMap[filter.genre as keyof typeof genreMap]
               : ""
           }
-          onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+          onClick={(e) => {
             setFilter({ ...filter, genre: e.currentTarget.value });
-
-            if (e.currentTarget.value === "all") {
-              router.replace(pathname + "?" + clearQueryString("genre"));
-            } else {
-              router.replace(
-                pathname +
-                  "?" +
-                  createQueryString("genre", e.currentTarget.value)
-              );
-            }
+            createRoute(e.currentTarget.value, "genre");
           }}
         />
       </div>
@@ -113,16 +106,7 @@ const MovieFilter = () => {
           cinemaId={filter.cinemaId}
           onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
             setFilter({ ...filter, cinemaId: e.currentTarget.value });
-
-            if (e.currentTarget.value === "all") {
-              router.replace(pathname + "?" + clearQueryString("cinemaId"));
-            } else {
-              router.replace(
-                pathname +
-                  "?" +
-                  createQueryString("cinemaId", e.currentTarget.value)
-              );
-            }
+            createRoute(e.currentTarget.value, "cinemaId");
           }}
         />
       </div>
