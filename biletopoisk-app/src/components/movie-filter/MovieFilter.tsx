@@ -50,11 +50,11 @@ const MovieFilter = () => {
     genre: searchParams.get("genre") || "",
   });
 
-  const createRoute = (name: string, filterName: keyof Filter): void => {
-    if (["all", ""].includes(name)) {
+  const createRoute = (filterName: keyof Filter, value: string): void => {
+    if (["all", ""].includes(value)) {
       router.replace(pathname + "?" + clearQueryString(filterName));
     } else {
-      router.replace(pathname + "?" + createQueryString(filterName, name));
+      router.replace(pathname + "?" + createQueryString(filterName, value));
     }
   };
 
@@ -66,7 +66,7 @@ const MovieFilter = () => {
 
     setDebounceTimer(
       setTimeout(() => {
-        createRoute(e.target.value, "title");
+        createRoute("title", e.target.value);
       }, 500)
     );
   };
@@ -95,7 +95,7 @@ const MovieFilter = () => {
           }
           onClick={(e) => {
             setFilter({ ...filter, genre: e.currentTarget.value });
-            createRoute(e.currentTarget.value, "genre");
+            createRoute("genre", e.currentTarget.value);
           }}
         />
       </div>
@@ -106,7 +106,7 @@ const MovieFilter = () => {
           cinemaId={filter.cinemaId}
           onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
             setFilter({ ...filter, cinemaId: e.currentTarget.value });
-            createRoute(e.currentTarget.value, "cinemaId");
+            createRoute("cinemaId", e.currentTarget.value);
           }}
         />
       </div>
