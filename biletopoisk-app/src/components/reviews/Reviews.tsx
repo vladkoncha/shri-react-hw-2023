@@ -18,7 +18,7 @@ const Reviews = ({ movieId }: Props) => {
   }
 
   if (!data || error) {
-    throw error || new Error("No data");
+    throw error || new Error("No reviews data");
   }
 
   let reviews: Review[] = [...data];
