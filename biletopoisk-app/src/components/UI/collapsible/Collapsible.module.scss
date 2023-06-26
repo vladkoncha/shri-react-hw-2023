@@ -1,6 +1,6 @@
 @use '../../../styles/base';
 
-.container {
+.collapsibleContainer {
   @include base.light-background;
   @include base.no-borders;
   overflow: hidden;

@@ -1,5 +1,5 @@
 import classes from "./DropDownFilter.module.scss";
-import React, { useEffect, useState } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import { Cinema } from "@/api-types/types";
 import DropDownList from "@/components/UI/drop-down-list/DropDownList";
 import { useGetCinemasQuery } from "@/store/services/movieApi";
@@ -16,7 +16,7 @@ const CinemaFilter = ({ onClick, cinemaId }: Props) => {
   const [isItemSelected, setIsItemSelected] = useState(Boolean(cinemaId));
   const cinemaFilters: { [key: string]: string } = { all: "Не выбран" };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (cinemaId) {
       setButtonCaption(cinemaFilters?.[cinemaId] || "Выберите кинотеатр");
     } else {

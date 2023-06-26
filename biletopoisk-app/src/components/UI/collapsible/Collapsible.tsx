@@ -11,7 +11,7 @@ interface Props {
 const Collapsible = ({ label, children }: Props) => {
   const [open, setOpen] = useState(false);
   return (
-    <div className={classes.container}>
+    <div className={classes.collapsibleContainer}>
       <button
         className={open ? classes.openButton : ""}
         onClick={() => {

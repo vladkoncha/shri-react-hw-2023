@@ -1,5 +1,3 @@
-"use client";
-
 import classes from "./ModalWrapper.module.scss";
 import React, { ReactNode } from "react";
 import classNames from "classnames";

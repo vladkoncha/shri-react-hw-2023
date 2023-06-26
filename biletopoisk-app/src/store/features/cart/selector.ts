@@ -14,7 +14,7 @@ export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 const selectCartModule = (state: State) => state.cart;
 
 export const selectInCart = createSelector([selectCartModule], (cartModule) => {
-  return Object.keys(cartModule);
+  return new Set(Object.keys(cartModule));
 });
 
 export const selectTicketAmount = (state: State, id: string) =>

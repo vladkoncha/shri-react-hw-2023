@@ -13,6 +13,7 @@ export type Filter = {
   genre: string;
   cinemaId: string;
 };
+
 const MovieFilter = () => {
   const router = useRouter();
   const pathname = usePathname();
@@ -70,6 +71,7 @@ const MovieFilter = () => {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     clearTimeout(debounceTimer);
 
+    setFilter({ ...filter, title: e.target.value });
     setDebounceTimer(
       setTimeout(() => {
         createRoute("title", e.target.value);
@@ -92,27 +94,31 @@ const MovieFilter = () => {
       </div>
 
       <div className={classes.inputContainer}>
-        <label>Жанр</label>
-        <GenreFilter
-          genre={
-            filter.genre in genreMap
-              ? genreMap[filter.genre as keyof typeof genreMap]
-              : ""
-          }
-          onClick={(e) => {
-            createRoute("genre", e.currentTarget.value);
-          }}
-        />
+        <label>
+          <div className={classes.labelContainer}>Жанр</div>
+          <GenreFilter
+            genre={
+              filter.genre in genreMap
+                ? genreMap[filter.genre as keyof typeof genreMap]
+                : ""
+            }
+            onClick={(e) => {
+              createRoute("genre", e.currentTarget.value);
+            }}
+          />
+        </label>
       </div>
 
       <div className={classes.inputContainer}>
-        <label>Кинотеатр</label>
-        <CinemaFilter
-          cinemaId={filter.cinemaId}
-          onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
-            createRoute("cinemaId", e.currentTarget.value);
-          }}
-        />
+        <label>
+          <div className={classes.labelContainer}>Кинотеатр</div>
+          <CinemaFilter
+            cinemaId={filter.cinemaId}
+            onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+              createRoute("cinemaId", e.currentTarget.value);
+            }}
+          />
+        </label>
       </div>
     </div>
   );

@@ -33,7 +33,7 @@ const TicketsProvider = ({ children }: Props) => {
   }
 
   if (!data || error) {
-    throw error || new Error("No data");
+    throw error || new Error("No movies data");
   }
 
   let movies: Movie[] = [...data];

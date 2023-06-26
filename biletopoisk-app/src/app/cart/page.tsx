@@ -4,6 +4,10 @@ import Tickets from "@/components/tickets/Tickets";
 import CartProvider from "@/components/tickets-provider/CartProvider";
 import CartTotal from "@/components/cart-total/CartTotal";
 
+export const metadata = {
+  title: "Билетопоиск | Корзина",
+};
+
 const Page = () => {
   return (
     <div className={classes.cartPageContainer}>

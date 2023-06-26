@@ -38,10 +38,6 @@ const TicketClicker = ({ addRemover, movieId }: Props) => {
     }
   }
 
-  const onClick = () => {
-    setRemoveTicketModal(true);
-  };
-
   return (
     <>
       <div className={"clickerContainer"}>
@@ -58,7 +54,11 @@ const TicketClicker = ({ addRemover, movieId }: Props) => {
         />
         {addRemover && (
           <div style={{ marginLeft: "1rem" }}>
-            <RemoveTicketButton onClick={onClick} />
+            <RemoveTicketButton
+              onClick={() => {
+                setRemoveTicketModal(true);
+              }}
+            />
           </div>
         )}
       </div>

@@ -2,13 +2,17 @@ import React from "react";
 import classes from "./Faq.module.scss";
 import Collapsible from "@/components/UI/collapsible/Collapsible";
 
+export const metadata = {
+  title: "Билетопоиск | Вопросы-ответы",
+};
+
 const Label = (text: string) => {
   return <h2>{text}</h2>;
 };
 
 const Page = () => {
   return (
-    <div className={classes.container}>
+    <div className={classes.faqPageContainer}>
       <h1>Вопросы-ответы</h1>
       <Collapsible label={Label("Что такое Билетопоиск?")}>
         <p>

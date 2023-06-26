@@ -25,7 +25,7 @@ const CartProvider = ({ children }: Props) => {
 
   let movies: Movie[] = [...data];
 
-  movies = movies.filter((movie) => ticketsInCart.includes(movie.id));
+  movies = movies.filter((movie) => ticketsInCart.has(movie.id));
 
   return (
     <TicketsContext.Provider value={movies}>{children}</TicketsContext.Provider>

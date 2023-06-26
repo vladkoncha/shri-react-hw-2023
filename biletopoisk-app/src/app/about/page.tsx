@@ -1,6 +1,10 @@
 import React from "react";
 import classes from "./About.module.scss";
 
+export const metadata = {
+  title: "Билетопоиск | О нас",
+};
+
 const Page = () => {
   return (
     <div className={classes.aboutContainer}>
