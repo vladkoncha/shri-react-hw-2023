@@ -1,3 +1,5 @@
+"use client";
+
 import classes from "./DropDownFilter.module.scss";
 import React, { useLayoutEffect, useState } from "react";
 import { genreMap } from "@/api-types/types";
